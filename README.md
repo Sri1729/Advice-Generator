@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/Sri1729/Advice-Generator)
+- Solution URL: [github](https://github.com/Sri1729/Advice-Generator)
 
 ## My process
 
@@ -41,16 +41,8 @@ Users should be able to:
 
 ### What I learned
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
 ```
-
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+Styling with Tailwind Css.
 ```
 
 ```
