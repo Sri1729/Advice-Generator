@@ -1,9 +1,15 @@
 import React from "react";
-import DividerDesktop from "./assets/pattern-divider-desktop.svg";
-import DividerMobile from "./assets/pattern-divider-mobile.svg";
-import DiceIcon from "./assets/icon-dice.svg";
+import { useAppDispatch, useAppSelector } from "../hooks";
+
+import DividerDesktop from "./../assets/pattern-divider-desktop.svg";
+import DividerMobile from "./../assets/pattern-divider-mobile.svg";
+import DiceIcon from "./../assets/icon-dice.svg";
+import { fetchRandomAdvice, isAdviceLoading, getAdvice } from "../store/advice";
 
 function App() {
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(isAdviceLoading);
+  const advice = useAppSelector(getAdvice);
   return (
     // Page
     <div className="flex flex-1 items-center justify-center h-screen bg-darkBlue">
@@ -13,13 +19,12 @@ function App() {
         <div className="flex flex-1 flex-col mb-8">
           {/* title */}
           <span className="text-sm tracking-widest text-neonGreen">
-            ADVICE #177
+            {`ADVICE #${advice.id}`}
           </span>
 
           {/* quote  */}
-          <p className="my-5 flex flex-1 text-lg items-center text-lightCyan font-extrabold">
-            "It's easy to sit up and take notice,what's difficult is to
-            stand-up"
+          <p className="my-5 flex flex-1 text-center justify-center text-lg items-center text-lightCyan font-extrabold">
+            {advice.advice}
           </p>
 
           {/* Divider desktop */}
@@ -37,7 +42,14 @@ function App() {
         </div>
 
         {/* Shuffle button  */}
-        <button className="flex absolute -bottom-5 p-3 rounded-full bg-neonGreen hover:drop-shadow-3xl">
+        <button
+          onClick={() => {
+            if (!isLoading) {
+              dispatch(fetchRandomAdvice());
+            }
+          }}
+          className="flex absolute -bottom-5 p-3 rounded-full bg-neonGreen hover:drop-shadow-3xl"
+        >
           <img src={DiceIcon} alt="dice" className="h-5 w-5" />
         </button>
       </div>
